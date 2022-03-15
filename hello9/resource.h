@@ -5,6 +5,8 @@
 
 #define IDD_MAIN                            100
 
+#define IDS_ERROR                           100
+
 #ifdef APSTUDIO_INVOKED
     #ifndef APSTUDIO_READONLY_SYMBOLS
         #define _APS_NO_MFC                 1

@@ -2,12 +2,35 @@
 #include <windowsx.h>
 #include "resource.h"
 
-void OnChange(HWND hwnd)
+LPCTSTR doLoadString(INT nID)
 {
-    INT nValue1 = GetDlgItemInt(hwnd, edt1, NULL, TRUE);
-    INT nValue2 = GetDlgItemInt(hwnd, edt2, NULL, TRUE);
+    static TCHAR s_szText[2][MAX_PATH];
+    static size_t s_nIndex = 0;
+    INT nIndex = s_nIndex;
+    s_szText[nIndex][0] = 0;
+    LoadString(NULL, nID, s_szText[nIndex], _countof(s_szText[nIndex]));
+    s_nIndex = !s_nIndex;
+    return s_szText[nIndex];
+}
+
+BOOL OnChange(HWND hwnd)
+{
+    BOOL bOK;
+    INT nValue1 = GetDlgItemInt(hwnd, edt1, &bOK, TRUE);
+    if (!bOK)
+    {
+        SetDlgItemText(hwnd, edt3, doLoadString(IDS_ERROR));
+        return FALSE;
+    }
+    INT nValue2 = GetDlgItemInt(hwnd, edt2, &bOK, TRUE);
+    if (!bOK)
+    {
+        SetDlgItemText(hwnd, edt3, doLoadString(IDS_ERROR));
+        return FALSE;
+    }
     INT nValue3 = nValue1 * nValue2;
     SetDlgItemInt(hwnd, edt3, nValue3, TRUE);
+    return TRUE;
 }
 
 BOOL OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam)
