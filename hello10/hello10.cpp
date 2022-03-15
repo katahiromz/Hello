@@ -78,7 +78,7 @@ BOOL doInitInst(HINSTANCE hInstance)
     wcx.hInstance = hInstance;
     wcx.hIcon = LoadIcon(NULL, IDI_APPLICATION);
     wcx.hCursor = LoadCursor(NULL, IDC_ARROW);
-    wcx.hbrBackground = (HBRUSH)(COLOR_3DFACE + 1);
+    wcx.hbrBackground = (HBRUSH)(COLOR_3DDKSHADOW + 1);
     wcx.lpszClassName = NAME;
     if (!RegisterClassEx(&wcx))
     {
