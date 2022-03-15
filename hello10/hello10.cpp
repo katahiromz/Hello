@@ -1,19 +1,26 @@
 #include <windows.h>
 #include <windowsx.h>
 #include <commctrl.h>
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 #define NAME TEXT("hello10")
 
 HINSTANCE g_hInstance = NULL;
 HWND g_hMainWnd = NULL;
 
+#define TIMER_ID 999
+#define INTERVAL 100
+
 BOOL OnCreate(HWND hwnd, LPCREATESTRUCT lpCreateStruct)
 {
+    SetTimer(hwnd, TIMER_ID, INTERVAL, NULL);
     return TRUE;
 }
 
 void OnDestroy(HWND hwnd)
 {
+    KillTimer(hwnd, TIMER_ID);
     PostQuitMessage(0);
 }
 
@@ -22,40 +29,57 @@ void OnPaint(HWND hwnd)
     RECT rc;
     GetClientRect(hwnd, &rc);
 
+    RECT rcWnd;
+    GetWindowRect(hwnd, &rcWnd);
+    POINT ptWnd = { (rcWnd.left + rcWnd.right) / 2, (rcWnd.top + rcWnd.bottom) / 2 };
+
+    POINT ptCursor;
+    GetCursorPos(&ptCursor);
+
     PAINTSTRUCT ps;
     if (HDC hdc = BeginPaint(hwnd, &ps))
     {
+        INT px = (rc.left + rc.right) / 2;
+        RECT rc1, rc2;
+        SetRect(&rc1, rc.left, rc.top, px, rc.bottom);
+        SetRect(&rc2, px, rc.top, rc.right, rc.bottom);
         {
-            HBRUSH hbr = GetStockBrush(WHITE_BRUSH);
-            HGDIOBJ hbrOld = SelectObject(hdc, hbr);
-            HPEN hRedPen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
-            HGDIOBJ hPen1Old = SelectObject(hdc, hRedPen);
+            HBRUSH hbr1 = GetStockBrush(WHITE_BRUSH);
+            HGDIOBJ hbr1Old = SelectObject(hdc, hbr1);
+            HPEN hPen = CreatePen(PS_SOLID, 15, RGB(0, 0, 0));
+            HGDIOBJ hPen1Old = SelectObject(hdc, hPen);
             {
-                Ellipse(hdc, rc.left, rc.top, rc.right, rc.bottom);
+                Ellipse(hdc, rc1.left, rc1.top, rc1.right, rc1.bottom);
+                Ellipse(hdc, rc2.left, rc2.top, rc2.right, rc2.bottom);
             }
             SelectObject(hdc, hPen1Old);
-            DeleteObject(hRedPen);
-            SelectObject(hdc, hbrOld);
-        }
-        {
-            HPEN hGreenPen = CreatePen(PS_SOLID, 3, RGB(0, 191, 0));
-            HGDIOBJ hPen2Old = SelectObject(hdc, hGreenPen);
+            DeleteObject(hPen);
+            SelectObject(hdc, hbr1Old);
+            HBRUSH hbr2 = GetStockBrush(BLACK_BRUSH);
+            HGDIOBJ hbr2Old = SelectObject(hdc, hbr2);
+            HGDIOBJ hPen2Old = SelectObject(hdc, GetStockBrush(NULL_PEN));
             {
-                MoveToEx(hdc, rc.left, rc.top, NULL);
-                LineTo(hdc, rc.right, rc.bottom);
-                MoveToEx(hdc, rc.right, rc.top, NULL);
-                LineTo(hdc, rc.left, rc.bottom);
+                RECT rc3 = rc1, rc4 = rc2;
+                InflateRect(&rc3, -20, -20);
+                InflateRect(&rc4, -20, -20);
+                double radian = atan2(ptCursor.y - ptWnd.y, ptCursor.x - ptWnd.x);
+                OffsetRect(&rc3, INT(20 * cos(radian)), INT(20 * sin(radian)));
+                OffsetRect(&rc4, INT(20 * cos(radian)), INT(20 * sin(radian)));
+                Ellipse(hdc, rc3.left, rc3.top, rc3.right, rc3.bottom);
+                Ellipse(hdc, rc4.left, rc4.top, rc4.right, rc4.bottom);
             }
             SelectObject(hdc, hPen2Old);
-            DeleteObject(hGreenPen);
-        }
-        {
-            UINT uFormat = DT_SINGLELINE | DT_CENTER | DT_VCENTER;
-            SetBkMode(hdc, TRANSPARENT);
-            SetTextColor(hdc, RGB(0, 0, 255));
-            DrawText(hdc, TEXT("hello10"), -1, &rc, uFormat);
+            SelectObject(hdc, hbr2Old);
         }
         EndPaint(hwnd, &ps);
+    }
+}
+
+void OnTimer(HWND hwnd, UINT id)
+{
+    if (id == TIMER_ID)
+    {
+        InvalidateRect(hwnd, NULL, TRUE);
     }
 }
 
@@ -66,6 +90,7 @@ WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
         HANDLE_MSG(hwnd, WM_CREATE, OnCreate);
         HANDLE_MSG(hwnd, WM_PAINT, OnPaint);
+        HANDLE_MSG(hwnd, WM_TIMER, OnTimer);
         HANDLE_MSG(hwnd, WM_DESTROY, OnDestroy);
     default:
         return DefWindowProc(hwnd, uMsg, wParam, lParam);
