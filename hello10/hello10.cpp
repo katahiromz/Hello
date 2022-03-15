@@ -58,7 +58,7 @@ void OnPaint(HWND hwnd)
             SelectObject(hdc, hbr1Old);
             if (g_bButtonDown)
             {
-                HPEN hPen3 = CreatePen(PS_SOLID, 8, RGB(0, 0, 0));
+                HPEN hPen3 = CreatePen(PS_SOLID, 8, RGB(255, 0, 0));
                 HGDIOBJ hPen3Old = SelectObject(hdc, hPen3);
                 {
                     MoveToEx(hdc, rc1.left, rc1.top, NULL);
@@ -76,7 +76,7 @@ void OnPaint(HWND hwnd)
             }
             else
             {
-                HBRUSH hbr2 = GetStockBrush(BLACK_BRUSH);
+                HBRUSH hbr2 = CreateSolidBrush(RGB(0, 0, 255));
                 HGDIOBJ hbr2Old = SelectObject(hdc, hbr2);
                 HGDIOBJ hPen2Old = SelectObject(hdc, GetStockBrush(NULL_PEN));
                 {
@@ -91,6 +91,7 @@ void OnPaint(HWND hwnd)
                 }
                 SelectObject(hdc, hPen2Old);
                 SelectObject(hdc, hbr2Old);
+                DeleteObject(hbr2);
             }
         }
         EndPaint(hwnd, &ps);
