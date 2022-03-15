@@ -8,6 +8,7 @@
 
 HINSTANCE g_hInstance = NULL;
 HWND g_hMainWnd = NULL;
+BOOL g_bButtonDown = FALSE;
 
 #define TIMER_ID 999
 #define INTERVAL 100
@@ -46,30 +47,51 @@ void OnPaint(HWND hwnd)
         {
             HBRUSH hbr1 = GetStockBrush(WHITE_BRUSH);
             HGDIOBJ hbr1Old = SelectObject(hdc, hbr1);
-            HPEN hPen = CreatePen(PS_SOLID, 15, RGB(0, 0, 0));
-            HGDIOBJ hPen1Old = SelectObject(hdc, hPen);
+            HPEN hPen1 = CreatePen(PS_SOLID, 15, RGB(0, 0, 0));
+            HGDIOBJ hPen1Old = SelectObject(hdc, hPen1);
             {
                 Ellipse(hdc, rc1.left, rc1.top, rc1.right, rc1.bottom);
                 Ellipse(hdc, rc2.left, rc2.top, rc2.right, rc2.bottom);
             }
             SelectObject(hdc, hPen1Old);
-            DeleteObject(hPen);
+            DeleteObject(hPen1);
             SelectObject(hdc, hbr1Old);
-            HBRUSH hbr2 = GetStockBrush(BLACK_BRUSH);
-            HGDIOBJ hbr2Old = SelectObject(hdc, hbr2);
-            HGDIOBJ hPen2Old = SelectObject(hdc, GetStockBrush(NULL_PEN));
+            if (g_bButtonDown)
             {
-                RECT rc3 = rc1, rc4 = rc2;
-                InflateRect(&rc3, -20, -20);
-                InflateRect(&rc4, -20, -20);
-                double radian = atan2(ptCursor.y - ptWnd.y, ptCursor.x - ptWnd.x);
-                OffsetRect(&rc3, INT(20 * cos(radian)), INT(20 * sin(radian)));
-                OffsetRect(&rc4, INT(20 * cos(radian)), INT(20 * sin(radian)));
-                Ellipse(hdc, rc3.left, rc3.top, rc3.right, rc3.bottom);
-                Ellipse(hdc, rc4.left, rc4.top, rc4.right, rc4.bottom);
+                HPEN hPen3 = CreatePen(PS_SOLID, 8, RGB(0, 0, 0));
+                HGDIOBJ hPen3Old = SelectObject(hdc, hPen3);
+                {
+                    MoveToEx(hdc, rc1.left, rc1.top, NULL);
+                    LineTo(hdc, rc1.right, rc1.bottom);
+                    MoveToEx(hdc, rc1.right, rc1.top, NULL);
+                    LineTo(hdc, rc1.left, rc1.bottom);
+
+                    MoveToEx(hdc, rc2.left, rc2.top, NULL);
+                    LineTo(hdc, rc2.right, rc2.bottom);
+                    MoveToEx(hdc, rc2.right, rc2.top, NULL);
+                    LineTo(hdc, rc2.left, rc2.bottom);
+                }
+                SelectObject(hdc, hPen3Old);
+                DeleteObject(hPen3);
             }
-            SelectObject(hdc, hPen2Old);
-            SelectObject(hdc, hbr2Old);
+            else
+            {
+                HBRUSH hbr2 = GetStockBrush(BLACK_BRUSH);
+                HGDIOBJ hbr2Old = SelectObject(hdc, hbr2);
+                HGDIOBJ hPen2Old = SelectObject(hdc, GetStockBrush(NULL_PEN));
+                {
+                    RECT rc3 = rc1, rc4 = rc2;
+                    InflateRect(&rc3, -20, -20);
+                    InflateRect(&rc4, -20, -20);
+                    double radian = atan2(ptCursor.y - ptWnd.y, ptCursor.x - ptWnd.x);
+                    OffsetRect(&rc3, INT(20 * cos(radian)), INT(20 * sin(radian)));
+                    OffsetRect(&rc4, INT(20 * cos(radian)), INT(20 * sin(radian)));
+                    Ellipse(hdc, rc3.left, rc3.top, rc3.right, rc3.bottom);
+                    Ellipse(hdc, rc4.left, rc4.top, rc4.right, rc4.bottom);
+                }
+                SelectObject(hdc, hPen2Old);
+                SelectObject(hdc, hbr2Old);
+            }
         }
         EndPaint(hwnd, &ps);
     }
@@ -83,6 +105,16 @@ void OnTimer(HWND hwnd, UINT id)
     }
 }
 
+void OnLButtonDown(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags)
+{
+    g_bButtonDown = TRUE;
+}
+
+void OnLButtonUp(HWND hwnd, int x, int y, UINT keyFlags)
+{
+    g_bButtonDown = FALSE;
+}
+
 LRESULT CALLBACK
 WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -91,6 +123,8 @@ WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         HANDLE_MSG(hwnd, WM_CREATE, OnCreate);
         HANDLE_MSG(hwnd, WM_PAINT, OnPaint);
         HANDLE_MSG(hwnd, WM_TIMER, OnTimer);
+        HANDLE_MSG(hwnd, WM_LBUTTONDOWN, OnLButtonDown);
+        HANDLE_MSG(hwnd, WM_LBUTTONUP, OnLButtonUp);
         HANDLE_MSG(hwnd, WM_DESTROY, OnDestroy);
     default:
         return DefWindowProc(hwnd, uMsg, wParam, lParam);
