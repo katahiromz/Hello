@@ -25,23 +25,30 @@ void OnPaint(HWND hwnd)
     PAINTSTRUCT ps;
     if (HDC hdc = BeginPaint(hwnd, &ps))
     {
-        HPEN hRedPen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
-        HGDIOBJ hPen1Old = SelectObject(hdc, hRedPen);
         {
-            Ellipse(hdc, rc.left, rc.top, rc.right, rc.bottom);
+            HBRUSH hbr = GetStockBrush(WHITE_BRUSH);
+            HGDIOBJ hbrOld = SelectObject(hdc, hbr);
+            HPEN hRedPen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
+            HGDIOBJ hPen1Old = SelectObject(hdc, hRedPen);
+            {
+                Ellipse(hdc, rc.left, rc.top, rc.right, rc.bottom);
+            }
+            SelectObject(hdc, hPen1Old);
+            DeleteObject(hRedPen);
+            SelectObject(hdc, hbrOld);
         }
-        SelectObject(hdc, hPen1Old);
-        DeleteObject(hRedPen);
-        HPEN hGreenPen = CreatePen(PS_SOLID, 3, RGB(0, 191, 0));
-        HGDIOBJ hPen2Old = SelectObject(hdc, hGreenPen);
         {
-            MoveToEx(hdc, rc.left, rc.top, NULL);
-            LineTo(hdc, rc.right, rc.bottom);
-            MoveToEx(hdc, rc.right, rc.top, NULL);
-            LineTo(hdc, rc.left, rc.bottom);
+            HPEN hGreenPen = CreatePen(PS_SOLID, 3, RGB(0, 191, 0));
+            HGDIOBJ hPen2Old = SelectObject(hdc, hGreenPen);
+            {
+                MoveToEx(hdc, rc.left, rc.top, NULL);
+                LineTo(hdc, rc.right, rc.bottom);
+                MoveToEx(hdc, rc.right, rc.top, NULL);
+                LineTo(hdc, rc.left, rc.bottom);
+            }
+            SelectObject(hdc, hPen2Old);
+            DeleteObject(hGreenPen);
         }
-        SelectObject(hdc, hPen2Old);
-        DeleteObject(hGreenPen);
         {
             UINT uFormat = DT_SINGLELINE | DT_CENTER | DT_VCENTER;
             SetBkMode(hdc, TRANSPARENT);
@@ -125,6 +132,11 @@ WinMain(HINSTANCE   hInstance,
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
+
+#if defined(_MSC_VER) && !defined(NDEBUG)
+    // for detecting memory leak (MSVC only)
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+#endif
 
     return (INT)msg.wParam;
 }
