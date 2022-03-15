@@ -124,6 +124,7 @@ WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         HANDLE_MSG(hwnd, WM_PAINT, OnPaint);
         HANDLE_MSG(hwnd, WM_TIMER, OnTimer);
         HANDLE_MSG(hwnd, WM_LBUTTONDOWN, OnLButtonDown);
+        HANDLE_MSG(hwnd, WM_LBUTTONDBLCLK, OnLButtonDown);
         HANDLE_MSG(hwnd, WM_LBUTTONUP, OnLButtonUp);
         HANDLE_MSG(hwnd, WM_DESTROY, OnDestroy);
     default:
