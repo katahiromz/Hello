@@ -8,3 +8,4 @@ cd hello7 && call build && cd ..
 cd hello8 && call build && cd ..
 cd hello9 && call build && cd ..
 cd hello10 && call build && cd ..
+cd hello11 && call build && cd ..
