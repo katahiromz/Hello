@@ -41,7 +41,7 @@ PNODE findNode(PNODE pHead, INT value)
     return NULL;
 }
 
-void deleteNode(PNODE pHead, PNODE pTarget)
+void deleteNode(PNODE pHead, PNODE pTarget) // This function has a bug.
 {
     PNODE pNode;
 
@@ -78,7 +78,7 @@ int main(void)
     printAllNodes(g_pHead);
     addNode(456);
     printAllNodes(g_pHead);
-    deleteNode(g_pHead, findNode(g_pHead, 123));
+    deleteNode(g_pHead, findNode(g_pHead, 456)); // buggy
     printAllNodes(g_pHead);
     addNode(789);
     printAllNodes(g_pHead);
