@@ -60,7 +60,7 @@ void deleteNode(PNODE& pHead, PNODE pTarget) // This function has a bug.
     delete pTarget;
 }
 
-void deleteAllNode(PNODE& pHead)
+void deleteAllNodes(PNODE& pHead)
 {
     PNODE pNode, pNext;
     for (pNode = pHead; pNode; pNode = pNext)
@@ -90,7 +90,7 @@ int main(void)
     addNode(g_pHead, 555);
     printAllNodes(g_pHead);
 
-    deleteAllNode(g_pHead);
+    deleteAllNodes(g_pHead);
     printAllNodes(g_pHead);
     return 0;
 }
