@@ -41,7 +41,7 @@ PNODE findNode(PNODE pHead, INT value)
     return NULL;
 }
 
-void deleteNode(PNODE pHead, PNODE pTarget) // This function has a bug.
+void deleteNode(PNODE& pHead, PNODE pTarget) // This function has a bug.
 {
     PNODE pNode;
 
