@@ -10,3 +10,4 @@ cd hello9 && call build && cd ..
 cd hello10 && call build && cd ..
 cd hello11 && call build && cd ..
 cd hello12 && call build && cd ..
+cd hello13 && call build && cd ..
