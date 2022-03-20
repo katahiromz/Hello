@@ -1,6 +1,7 @@
 #include <windows.h>
 #include <stdio.h>
 
+// A self referential structure
 typedef struct tagNODE
 {
     struct tagNODE *pNext;
