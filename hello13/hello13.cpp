@@ -21,12 +21,12 @@ void printAllNodes(PNODE pHead)
     }
 }
 
-BOOL addNode(INT value)
+BOOL addNode(PNODE& pHead, INT value)
 {
     PNODE pNode = new NODE;
     pNode->value = value;
-    pNode->pNext = g_pHead;
-    g_pHead = pNode;
+    pNode->pNext = pHead;
+    pHead = pNode;
     return TRUE;
 }
 
@@ -75,19 +75,19 @@ int main(void)
 {
     printAllNodes(g_pHead);
 
-    addNode(123);
+    addNode(g_pHead, 123);
     printAllNodes(g_pHead);
 
-    addNode(456);
+    addNode(g_pHead, 456);
     printAllNodes(g_pHead);
 
-    deleteNode(g_pHead, findNode(g_pHead, 456)); // buggy
+    //deleteNode(g_pHead, findNode(g_pHead, 456)); // buggy
     printAllNodes(g_pHead);
 
-    addNode(789);
+    addNode(g_pHead, 789);
     printAllNodes(g_pHead);
 
-    addNode(555);
+    addNode(g_pHead, 555);
     printAllNodes(g_pHead);
 
     deleteAllNode(g_pHead);
