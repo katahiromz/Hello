@@ -74,16 +74,22 @@ void deleteAllNode(PNODE& pHead)
 int main(void)
 {
     printAllNodes(g_pHead);
+
     addNode(123);
     printAllNodes(g_pHead);
+
     addNode(456);
     printAllNodes(g_pHead);
+
     deleteNode(g_pHead, findNode(g_pHead, 456)); // buggy
     printAllNodes(g_pHead);
+
     addNode(789);
     printAllNodes(g_pHead);
+
     addNode(555);
     printAllNodes(g_pHead);
+
     deleteAllNode(g_pHead);
     printAllNodes(g_pHead);
     return 0;
