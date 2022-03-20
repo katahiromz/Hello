@@ -32,6 +32,7 @@ https://www.microsoft.com/en-us/download/details.aspx?id=19727
 仮想マシンにおいてCtrl+Alt+Deleteは特殊なキーなのでVirtualBoxのメニューから入力する。
 
 【課題1】テキスト通りにWinDBGを使ってWin2k3のSHELL32!SHFileOperationWを調べてみよう。
+マウスポインタが見えないときは、「入力」の「マウス統合」を無効にして下さい。
 
 OSにおけるいくつかの概念について説明する。WindowsはOS（基本ソフト）であり、OS（Operating System）はプロセス（process）という単位でプログラムを動かす。Windowsはマルチタスクであり、複数のプロセスが同時に動作している。
 プロセスの中にはさらに小さい実行単位のスレッド（thread）というのが1個以上ある。それぞれのスレッドは並列に動作する。
