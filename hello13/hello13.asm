@@ -3,36 +3,23 @@
 	.text
 	.section	.text$_Z6printfPKcz,"x"
 	.linkonce discard
+	.p2align 4,,15
 	.globl	__Z6printfPKcz
 	.def	__Z6printfPKcz;	.scl	2;	.type	32;	.endef
 __Z6printfPKcz:
-	push	ebp
-	mov	ebp, esp
 	push	ebx
-	sub	esp, 36
-	lea	eax, [ebp+12]
-	mov	DWORD PTR [ebp-16], eax
-	mov	ebx, DWORD PTR [ebp-16]
+	sub	esp, 24
 	mov	DWORD PTR [esp], 1
-	mov	eax, DWORD PTR __imp____acrt_iob_func
-	call	eax
-	mov	edx, eax
+	lea	ebx, [esp+36]
+	call	[DWORD PTR __imp____acrt_iob_func]
+	mov	edx, DWORD PTR [esp+32]
 	mov	DWORD PTR [esp+8], ebx
-	mov	eax, DWORD PTR [ebp+8]
-	mov	DWORD PTR [esp+4], eax
-	mov	DWORD PTR [esp], edx
+	mov	DWORD PTR [esp], eax
+	mov	DWORD PTR [esp+4], edx
 	call	___mingw_vfprintf
-	mov	DWORD PTR [ebp-12], eax
-	mov	eax, DWORD PTR [ebp-12]
-	add	esp, 36
+	add	esp, 24
 	pop	ebx
-	pop	ebp
 	ret
-	.globl	_g_pHead
-	.bss
-	.align 4
-_g_pHead:
-	.space 4
 	.section .rdata,"dr"
 LC0:
 	.ascii "---\12\0"
@@ -40,206 +27,234 @@ LC0:
 LC1:
 	.ascii "%p(%d): pNode %p, value %d, pNext %p\12\0"
 	.text
-	.globl	__Z13printAllNodesP7tagNODE
-	.def	__Z13printAllNodesP7tagNODE;	.scl	2;	.type	32;	.endef
-__Z13printAllNodesP7tagNODE:
-	push	ebp
-	mov	ebp, esp
-	sub	esp, 56
-	mov	DWORD PTR [ebp-16], 0
+	.p2align 4,,15
+	.globl	__Z13printAllNodesP7tagNODE@4
+	.def	__Z13printAllNodesP7tagNODE@4;	.scl	2;	.type	32;	.endef
+__Z13printAllNodesP7tagNODE@4:
+	push	edi
+	push	esi
+	push	ebx
+	sub	esp, 32
 	mov	DWORD PTR [esp], OFFSET FLAT:LC0
+	mov	edi, DWORD PTR [esp+48]
 	call	__Z6printfPKcz
-	mov	eax, DWORD PTR [ebp+8]
-	mov	DWORD PTR [ebp-12], eax
-L5:
-	cmp	DWORD PTR [ebp-12], 0
-	je	L6
-	mov	eax, DWORD PTR [ebp-12]
-	mov	edx, DWORD PTR [eax]
-	mov	eax, DWORD PTR [ebp-12]
-	mov	eax, DWORD PTR [eax+4]
-	mov	DWORD PTR [esp+20], edx
+	test	edi, edi
+	je	L4
+	mov	ebx, edi
+	xor	esi, esi
+	.p2align 4,,10
+L6:
+	mov	eax, DWORD PTR [ebx]
+	mov	DWORD PTR [esp+20], eax
+	mov	eax, DWORD PTR [ebx+4]
+	mov	DWORD PTR [esp+12], ebx
+	mov	DWORD PTR [esp+8], esi
+	add	esi, 1
 	mov	DWORD PTR [esp+16], eax
-	mov	eax, DWORD PTR [ebp-12]
-	mov	DWORD PTR [esp+12], eax
-	mov	eax, DWORD PTR [ebp-16]
-	mov	DWORD PTR [esp+8], eax
-	mov	eax, DWORD PTR [ebp+8]
-	mov	DWORD PTR [esp+4], eax
+	mov	DWORD PTR [esp+4], edi
 	mov	DWORD PTR [esp], OFFSET FLAT:LC1
 	call	__Z6printfPKcz
-	add	DWORD PTR [ebp-16], 1
-	mov	eax, DWORD PTR [ebp-12]
-	mov	eax, DWORD PTR [eax]
-	mov	DWORD PTR [ebp-12], eax
-	jmp	L5
-L6:
-	nop
-	leave
-	ret
-	.globl	__Z7addNodeRP7tagNODEi
-	.def	__Z7addNodeRP7tagNODEi;	.scl	2;	.type	32;	.endef
-__Z7addNodeRP7tagNODEi:
-	push	ebp
-	mov	ebp, esp
-	sub	esp, 40
+	mov	ebx, DWORD PTR [ebx]
+	test	ebx, ebx
+	jne	L6
+L4:
+	add	esp, 32
+	pop	ebx
+	pop	esi
+	pop	edi
+	ret	4
+	.p2align 4,,15
+	.globl	__Z7addNodeRP7tagNODEi@8
+	.def	__Z7addNodeRP7tagNODEi@8;	.scl	2;	.type	32;	.endef
+__Z7addNodeRP7tagNODEi@8:
+	push	ebx
+	sub	esp, 24
 	mov	DWORD PTR [esp], 8
+	mov	ebx, DWORD PTR [esp+32]
 	call	__Znwj
-	mov	DWORD PTR [ebp-12], eax
-	mov	eax, DWORD PTR [ebp-12]
-	mov	edx, DWORD PTR [ebp+12]
+	mov	edx, DWORD PTR [esp+36]
 	mov	DWORD PTR [eax+4], edx
-	mov	eax, DWORD PTR [ebp+8]
-	mov	edx, DWORD PTR [eax]
-	mov	eax, DWORD PTR [ebp-12]
+	mov	edx, DWORD PTR [ebx]
+	mov	DWORD PTR [ebx], eax
 	mov	DWORD PTR [eax], edx
-	mov	eax, DWORD PTR [ebp+8]
-	mov	edx, DWORD PTR [ebp-12]
-	mov	DWORD PTR [eax], edx
+	add	esp, 24
 	mov	eax, 1
-	leave
-	ret
-	.globl	__Z8findNodeP7tagNODEi
-	.def	__Z8findNodeP7tagNODEi;	.scl	2;	.type	32;	.endef
-__Z8findNodeP7tagNODEi:
-	push	ebp
-	mov	ebp, esp
-	sub	esp, 16
-	mov	eax, DWORD PTR [ebp+8]
-	mov	DWORD PTR [ebp-4], eax
-L13:
-	cmp	DWORD PTR [ebp-4], 0
-	je	L10
-	mov	eax, DWORD PTR [ebp-4]
-	mov	eax, DWORD PTR [eax+4]
-	cmp	DWORD PTR [ebp+12], eax
-	jne	L11
-	mov	eax, DWORD PTR [ebp-4]
-	jmp	L12
-L11:
-	mov	eax, DWORD PTR [ebp-4]
-	mov	eax, DWORD PTR [eax]
-	mov	DWORD PTR [ebp-4], eax
-	jmp	L13
-L10:
-	mov	eax, 0
-L12:
-	leave
-	ret
-	.globl	__Z10deleteNodeRP7tagNODES0_
-	.def	__Z10deleteNodeRP7tagNODES0_;	.scl	2;	.type	32;	.endef
-__Z10deleteNodeRP7tagNODES0_:
-	push	ebp
-	mov	ebp, esp
-	sub	esp, 40
-	cmp	DWORD PTR [ebp+12], 0
-	je	L20
-	mov	eax, DWORD PTR [ebp+8]
-	mov	eax, DWORD PTR [eax]
-	mov	DWORD PTR [ebp-12], eax
-L19:
-	cmp	DWORD PTR [ebp-12], 0
-	je	L17
-	mov	eax, DWORD PTR [ebp-12]
-	mov	eax, DWORD PTR [eax]
-	cmp	DWORD PTR [ebp+12], eax
-	jne	L18
-	mov	eax, DWORD PTR [ebp+12]
-	mov	edx, DWORD PTR [eax]
-	mov	eax, DWORD PTR [ebp-12]
-	mov	DWORD PTR [eax], edx
-	jmp	L17
-L18:
-	mov	eax, DWORD PTR [ebp-12]
-	mov	eax, DWORD PTR [eax]
-	mov	DWORD PTR [ebp-12], eax
-	jmp	L19
+	pop	ebx
+	ret	8
+	.p2align 4,,15
+	.globl	__Z8findNodeP7tagNODEi@8
+	.def	__Z8findNodeP7tagNODEi@8;	.scl	2;	.type	32;	.endef
+__Z8findNodeP7tagNODEi@8:
+	mov	eax, DWORD PTR [esp+4]
+	mov	edx, DWORD PTR [esp+8]
+	test	eax, eax
+	je	L15
+	cmp	edx, DWORD PTR [eax+4]
+	jne	L16
+	jmp	L15
+	.p2align 4,,10
 L17:
-	mov	DWORD PTR [esp+4], 8
-	mov	eax, DWORD PTR [ebp+12]
-	mov	DWORD PTR [esp], eax
-	call	__ZdlPvj
-	jmp	L14
-L20:
-	nop
-L14:
-	leave
-	ret
-	.globl	__Z14deleteAllNodesRP7tagNODE
-	.def	__Z14deleteAllNodesRP7tagNODE;	.scl	2;	.type	32;	.endef
-__Z14deleteAllNodesRP7tagNODE:
-	push	ebp
-	mov	ebp, esp
-	sub	esp, 40
-	mov	eax, DWORD PTR [ebp+8]
+	cmp	DWORD PTR [eax+4], edx
+	je	L15
+L16:
 	mov	eax, DWORD PTR [eax]
-	mov	DWORD PTR [ebp-12], eax
+	test	eax, eax
+	jne	L17
+L15:
+	ret	8
+	.p2align 4,,15
+	.globl	__Z10deleteNodeRP7tagNODES0_@8
+	.def	__Z10deleteNodeRP7tagNODES0_@8;	.scl	2;	.type	32;	.endef
+__Z10deleteNodeRP7tagNODES0_@8:
+	sub	esp, 28
+	mov	ecx, DWORD PTR [esp+36]
+	test	ecx, ecx
+	je	L21
+	mov	eax, DWORD PTR [esp+32]
+	mov	edx, DWORD PTR [eax]
+	test	edx, edx
+	je	L23
+	mov	eax, DWORD PTR [edx]
+	cmp	ecx, eax
+	jne	L25
+	jmp	L39
+	.p2align 4,,10
+L37:
+	mov	edx, DWORD PTR [eax]
+	cmp	edx, ecx
+	je	L24
+	mov	eax, edx
+L25:
+	test	eax, eax
+	jne	L37
 L23:
-	cmp	DWORD PTR [ebp-12], 0
-	je	L22
-	mov	eax, DWORD PTR [ebp-12]
-	mov	eax, DWORD PTR [eax]
-	mov	DWORD PTR [ebp-16], eax
 	mov	DWORD PTR [esp+4], 8
-	mov	eax, DWORD PTR [ebp-12]
-	mov	DWORD PTR [esp], eax
+	mov	DWORD PTR [esp], ecx
 	call	__ZdlPvj
-	mov	eax, DWORD PTR [ebp-16]
-	mov	DWORD PTR [ebp-12], eax
+L21:
+	add	esp, 28
+	ret	8
+L39:
+	mov	eax, edx
+	.p2align 4,,10
+L24:
+	mov	edx, DWORD PTR [ecx]
+	mov	DWORD PTR [eax], edx
 	jmp	L23
-L22:
-	mov	eax, DWORD PTR [ebp+8]
-	mov	DWORD PTR [eax], 0
-	nop
-	leave
-	ret
+	.p2align 4,,15
+	.globl	__Z14deleteAllNodesRP7tagNODE@4
+	.def	__Z14deleteAllNodesRP7tagNODE@4;	.scl	2;	.type	32;	.endef
+__Z14deleteAllNodesRP7tagNODE@4:
+	push	esi
+	push	ebx
+	sub	esp, 20
+	mov	esi, DWORD PTR [esp+32]
+	mov	eax, DWORD PTR [esi]
+	test	eax, eax
+	je	L41
+	.p2align 4,,10
+L42:
+	mov	ebx, DWORD PTR [eax]
+	mov	DWORD PTR [esp], eax
+	mov	DWORD PTR [esp+4], 8
+	call	__ZdlPvj
+	mov	eax, ebx
+	test	ebx, ebx
+	jne	L42
+L41:
+	mov	DWORD PTR [esi], 0
+	add	esp, 20
+	pop	ebx
+	pop	esi
+	ret	4
 	.def	___main;	.scl	2;	.type	32;	.endef
+	.section	.text.startup,"x"
+	.p2align 4,,15
 	.globl	_main
 	.def	_main;	.scl	2;	.type	32;	.endef
 _main:
+	lea	ecx, [esp+4]
+	and	esp, -16
+	push	DWORD PTR [ecx-4]
 	push	ebp
 	mov	ebp, esp
-	and	esp, -16
+	push	ebx
+	push	ecx
 	sub	esp, 16
 	call	___main
 	mov	eax, DWORD PTR _g_pHead
 	mov	DWORD PTR [esp], eax
-	call	__Z13printAllNodesP7tagNODE
-	mov	DWORD PTR [esp+4], 123
-	mov	DWORD PTR [esp], OFFSET FLAT:_g_pHead
-	call	__Z7addNodeRP7tagNODEi
-	mov	eax, DWORD PTR _g_pHead
+	call	__Z13printAllNodesP7tagNODE@4
+	sub	esp, 4
+	mov	DWORD PTR [esp], 8
+	call	__Znwj
+	mov	edx, DWORD PTR _g_pHead
+	mov	DWORD PTR [eax+4], 123
+	mov	DWORD PTR [eax], edx
 	mov	DWORD PTR [esp], eax
-	call	__Z13printAllNodesP7tagNODE
-	mov	DWORD PTR [esp+4], 456
-	mov	DWORD PTR [esp], OFFSET FLAT:_g_pHead
-	call	__Z7addNodeRP7tagNODEi
-	mov	eax, DWORD PTR _g_pHead
+	mov	DWORD PTR _g_pHead, eax
+	call	__Z13printAllNodesP7tagNODE@4
+	sub	esp, 4
+	mov	DWORD PTR [esp], 8
+	call	__Znwj
+	mov	edx, DWORD PTR _g_pHead
+	mov	DWORD PTR [eax+4], 456
+	mov	DWORD PTR [eax], edx
 	mov	DWORD PTR [esp], eax
-	call	__Z13printAllNodesP7tagNODE
+	mov	DWORD PTR _g_pHead, eax
+	call	__Z13printAllNodesP7tagNODE@4
 	mov	eax, DWORD PTR _g_pHead
+	sub	esp, 4
 	mov	DWORD PTR [esp], eax
-	call	__Z13printAllNodesP7tagNODE
-	mov	DWORD PTR [esp+4], 789
-	mov	DWORD PTR [esp], OFFSET FLAT:_g_pHead
-	call	__Z7addNodeRP7tagNODEi
+	call	__Z13printAllNodesP7tagNODE@4
+	sub	esp, 4
+	mov	DWORD PTR [esp], 8
+	call	__Znwj
+	mov	edx, DWORD PTR _g_pHead
+	mov	DWORD PTR [eax+4], 789
+	mov	DWORD PTR [eax], edx
+	mov	DWORD PTR [esp], eax
+	mov	DWORD PTR _g_pHead, eax
+	call	__Z13printAllNodesP7tagNODE@4
+	sub	esp, 4
+	mov	DWORD PTR [esp], 8
+	call	__Znwj
+	mov	edx, DWORD PTR _g_pHead
+	mov	DWORD PTR [eax+4], 555
+	mov	DWORD PTR [eax], edx
+	mov	DWORD PTR [esp], eax
+	mov	DWORD PTR _g_pHead, eax
+	call	__Z13printAllNodesP7tagNODE@4
 	mov	eax, DWORD PTR _g_pHead
+	sub	esp, 4
+	test	eax, eax
+	je	L49
+	.p2align 4,,10
+L50:
+	mov	ebx, DWORD PTR [eax]
 	mov	DWORD PTR [esp], eax
-	call	__Z13printAllNodesP7tagNODE
-	mov	DWORD PTR [esp+4], 555
-	mov	DWORD PTR [esp], OFFSET FLAT:_g_pHead
-	call	__Z7addNodeRP7tagNODEi
-	mov	eax, DWORD PTR _g_pHead
-	mov	DWORD PTR [esp], eax
-	call	__Z13printAllNodesP7tagNODE
-	mov	DWORD PTR [esp], OFFSET FLAT:_g_pHead
-	call	__Z14deleteAllNodesRP7tagNODE
-	mov	eax, DWORD PTR _g_pHead
-	mov	DWORD PTR [esp], eax
-	call	__Z13printAllNodesP7tagNODE
-	mov	eax, 0
-	leave
+	mov	DWORD PTR [esp+4], 8
+	call	__ZdlPvj
+	mov	eax, ebx
+	test	ebx, ebx
+	jne	L50
+L49:
+	mov	DWORD PTR [esp], 0
+	mov	DWORD PTR _g_pHead, 0
+	call	__Z13printAllNodesP7tagNODE@4
+	xor	eax, eax
+	sub	esp, 4
+	lea	esp, [ebp-8]
+	pop	ecx
+	pop	ebx
+	pop	ebp
+	lea	esp, [ecx-4]
 	ret
+	.globl	_g_pHead
+	.bss
+	.align 4
+_g_pHead:
+	.space 4
 	.ident	"GCC: (RosBE-Windows) 8.4.0"
 	.def	___mingw_vfprintf;	.scl	2;	.type	32;	.endef
 	.def	__Znwj;	.scl	2;	.type	32;	.endef

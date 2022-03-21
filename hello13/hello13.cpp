@@ -10,7 +10,7 @@ typedef struct tagNODE
 
 PNODE g_pHead = NULL;
 
-void printAllNodes(PNODE pHead)
+void __stdcall printAllNodes(PNODE pHead)
 {
     PNODE pNode;
     INT index = 0;
@@ -22,7 +22,7 @@ void printAllNodes(PNODE pHead)
     }
 }
 
-BOOL addNode(PNODE& pHead, INT value)
+BOOL __stdcall addNode(PNODE& pHead, INT value)
 {
     PNODE pNode = new NODE;
     pNode->value = value;
@@ -31,7 +31,7 @@ BOOL addNode(PNODE& pHead, INT value)
     return TRUE;
 }
 
-PNODE findNode(PNODE pHead, INT value)
+PNODE __stdcall findNode(PNODE pHead, INT value)
 {
     PNODE pNode;
     for (pNode = pHead; pNode; pNode = pNode->pNext)
@@ -42,7 +42,7 @@ PNODE findNode(PNODE pHead, INT value)
     return NULL;
 }
 
-void deleteNode(PNODE& pHead, PNODE pTarget) // This function has a bug.
+void __stdcall deleteNode(PNODE& pHead, PNODE pTarget) // This function has a bug.
 {
     PNODE pNode;
 
@@ -61,7 +61,7 @@ void deleteNode(PNODE& pHead, PNODE pTarget) // This function has a bug.
     delete pTarget;
 }
 
-void deleteAllNodes(PNODE& pHead)
+void __stdcall deleteAllNodes(PNODE& pHead)
 {
     PNODE pNode, pNext;
     for (pNode = pHead; pNode; pNode = pNext)
