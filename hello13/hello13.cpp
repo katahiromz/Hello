@@ -25,9 +25,9 @@ void __stdcall printAllNodes(PNODE pHead)
     }
 }
 
-BOOL __stdcall addNode(PNODE& pHead, INT value)
+BOOL __cdecl addNode(PNODE& pHead, INT value)
 {
-    PNODE pNode = new NODE;
+    PNODE pNode = new NODE; // malloc(sizeof(NODE))
     pNode->value = value;
     pNode->pNext = pHead;
     pHead = pNode;
@@ -61,7 +61,7 @@ void __stdcall deleteNode(PNODE& pHead, PNODE pTarget) // This function has a bu
         }
     }
 
-    delete pTarget;
+    delete pTarget; //free(pTarget);
 }
 
 void __stdcall deleteAllNodes(PNODE& pHead)
@@ -70,7 +70,7 @@ void __stdcall deleteAllNodes(PNODE& pHead)
     for (pNode = pHead; pNode; pNode = pNext)
     {
         pNext = pNode->pNext;
-        delete pNode;
+        delete pNode; //free(pNode);
     }
     pHead = NULL;
 }
