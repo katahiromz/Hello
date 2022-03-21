@@ -142,8 +142,9 @@ L26:
 	test	eax, eax
 	jne	L38
 L24:
+	mov	DWORD PTR [esp+4], 8
 	mov	DWORD PTR [esp], ecx
-	call	__ZdlPv
+	call	__ZdlPvj
 L22:
 	leave
 	ret	8
@@ -171,7 +172,8 @@ _deleteAllNodes@4:
 L43:
 	mov	ebx, DWORD PTR [eax]
 	mov	DWORD PTR [esp], eax
-	call	__ZdlPv
+	mov	DWORD PTR [esp+4], 8
+	call	__ZdlPvj
 	mov	eax, ebx
 	test	ebx, ebx
 	jne	L43
@@ -248,7 +250,8 @@ _main:
 L51:
 	mov	ebx, DWORD PTR [eax]
 	mov	DWORD PTR [esp], eax
-	call	__ZdlPv
+	mov	DWORD PTR [esp+4], 8
+	call	__ZdlPvj
 	mov	eax, ebx
 	test	ebx, ebx
 	jne	L51
@@ -272,4 +275,4 @@ _g_pHead:
 	.ident	"GCC: (RosBE-Windows) 8.4.0"
 	.def	___mingw_vfprintf;	.scl	2;	.type	32;	.endef
 	.def	__Znwj;	.scl	2;	.type	32;	.endef
-	.def	__ZdlPv;	.scl	2;	.type	32;	.endef
+	.def	__ZdlPvj;	.scl	2;	.type	32;	.endef
