@@ -27,7 +27,7 @@ void __stdcall printAllNodes(PNODE pHead)
 
 BOOL __cdecl addNode(PNODE& pHead, INT value)
 {
-    PNODE pNode = new NODE; // malloc(sizeof(NODE))
+    PNODE pNode = new NODE; //PNODE pNode = malloc(sizeof(NODE))
     pNode->value = value;
     pNode->pNext = pHead;
     pHead = pNode;
