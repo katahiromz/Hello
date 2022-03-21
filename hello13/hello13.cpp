@@ -1,6 +1,9 @@
 #include <windows.h>
 #include <stdio.h>
 
+extern "C"
+{
+
 // A self referential structure
 typedef struct tagNODE
 {
@@ -71,6 +74,8 @@ void __stdcall deleteAllNodes(PNODE& pHead)
     }
     pHead = NULL;
 }
+
+} // extern "C"
 
 int main(void)
 {

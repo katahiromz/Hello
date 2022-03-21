@@ -28,9 +28,9 @@ LC1:
 	.ascii "%p(%d): pNode %p, value %d, pNext %p\12\0"
 	.text
 	.p2align 4,,15
-	.globl	__Z13printAllNodesP7tagNODE@4
-	.def	__Z13printAllNodesP7tagNODE@4;	.scl	2;	.type	32;	.endef
-__Z13printAllNodesP7tagNODE@4:
+	.globl	_printAllNodes@4
+	.def	_printAllNodes@4;	.scl	2;	.type	32;	.endef
+_printAllNodes@4:
 	push	edi
 	push	esi
 	push	ebx
@@ -64,9 +64,9 @@ L4:
 	pop	edi
 	ret	4
 	.p2align 4,,15
-	.globl	__Z7addNodeRP7tagNODEi@8
-	.def	__Z7addNodeRP7tagNODEi@8;	.scl	2;	.type	32;	.endef
-__Z7addNodeRP7tagNODEi@8:
+	.globl	_addNode@8
+	.def	_addNode@8;	.scl	2;	.type	32;	.endef
+_addNode@8:
 	push	ebx
 	sub	esp, 24
 	mov	DWORD PTR [esp], 8
@@ -82,9 +82,9 @@ __Z7addNodeRP7tagNODEi@8:
 	pop	ebx
 	ret	8
 	.p2align 4,,15
-	.globl	__Z8findNodeP7tagNODEi@8
-	.def	__Z8findNodeP7tagNODEi@8;	.scl	2;	.type	32;	.endef
-__Z8findNodeP7tagNODEi@8:
+	.globl	_findNode@8
+	.def	_findNode@8;	.scl	2;	.type	32;	.endef
+_findNode@8:
 	mov	eax, DWORD PTR [esp+4]
 	mov	edx, DWORD PTR [esp+8]
 	test	eax, eax
@@ -103,9 +103,9 @@ L16:
 L15:
 	ret	8
 	.p2align 4,,15
-	.globl	__Z10deleteNodeRP7tagNODES0_@8
-	.def	__Z10deleteNodeRP7tagNODES0_@8;	.scl	2;	.type	32;	.endef
-__Z10deleteNodeRP7tagNODES0_@8:
+	.globl	_deleteNode@8
+	.def	_deleteNode@8;	.scl	2;	.type	32;	.endef
+_deleteNode@8:
 	sub	esp, 28
 	mov	ecx, DWORD PTR [esp+36]
 	test	ecx, ecx
@@ -142,9 +142,9 @@ L24:
 	mov	DWORD PTR [eax], edx
 	jmp	L23
 	.p2align 4,,15
-	.globl	__Z14deleteAllNodesRP7tagNODE@4
-	.def	__Z14deleteAllNodesRP7tagNODE@4;	.scl	2;	.type	32;	.endef
-__Z14deleteAllNodesRP7tagNODE@4:
+	.globl	_deleteAllNodes@4
+	.def	_deleteAllNodes@4;	.scl	2;	.type	32;	.endef
+_deleteAllNodes@4:
 	push	esi
 	push	ebx
 	sub	esp, 20
@@ -184,7 +184,7 @@ _main:
 	call	___main
 	mov	eax, DWORD PTR _g_pHead
 	mov	DWORD PTR [esp], eax
-	call	__Z13printAllNodesP7tagNODE@4
+	call	_printAllNodes@4
 	sub	esp, 4
 	mov	DWORD PTR [esp], 8
 	call	__Znwj
@@ -193,7 +193,7 @@ _main:
 	mov	DWORD PTR [eax], edx
 	mov	DWORD PTR [esp], eax
 	mov	DWORD PTR _g_pHead, eax
-	call	__Z13printAllNodesP7tagNODE@4
+	call	_printAllNodes@4
 	sub	esp, 4
 	mov	DWORD PTR [esp], 8
 	call	__Znwj
@@ -202,11 +202,11 @@ _main:
 	mov	DWORD PTR [eax], edx
 	mov	DWORD PTR [esp], eax
 	mov	DWORD PTR _g_pHead, eax
-	call	__Z13printAllNodesP7tagNODE@4
+	call	_printAllNodes@4
 	mov	eax, DWORD PTR _g_pHead
 	sub	esp, 4
 	mov	DWORD PTR [esp], eax
-	call	__Z13printAllNodesP7tagNODE@4
+	call	_printAllNodes@4
 	sub	esp, 4
 	mov	DWORD PTR [esp], 8
 	call	__Znwj
@@ -215,7 +215,7 @@ _main:
 	mov	DWORD PTR [eax], edx
 	mov	DWORD PTR [esp], eax
 	mov	DWORD PTR _g_pHead, eax
-	call	__Z13printAllNodesP7tagNODE@4
+	call	_printAllNodes@4
 	sub	esp, 4
 	mov	DWORD PTR [esp], 8
 	call	__Znwj
@@ -224,7 +224,7 @@ _main:
 	mov	DWORD PTR [eax], edx
 	mov	DWORD PTR [esp], eax
 	mov	DWORD PTR _g_pHead, eax
-	call	__Z13printAllNodesP7tagNODE@4
+	call	_printAllNodes@4
 	mov	eax, DWORD PTR _g_pHead
 	sub	esp, 4
 	test	eax, eax
@@ -241,7 +241,7 @@ L50:
 L49:
 	mov	DWORD PTR [esp], 0
 	mov	DWORD PTR _g_pHead, 0
-	call	__Z13printAllNodesP7tagNODE@4
+	call	_printAllNodes@4
 	xor	eax, eax
 	sub	esp, 4
 	lea	esp, [ebp-8]
