@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 #include <sys/stat.h>
 
 int doReadFile(const char *filename, char **pptext)
@@ -63,6 +64,9 @@ int printFile(const char *filename)
         break;
     case -4:
         printf("ERROR: cannot read '%s'\n", filename);
+        break;
+    default:
+        assert(0);
         break;
     }
 
