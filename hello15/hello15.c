@@ -3,14 +3,14 @@
 #include <assert.h>
 #include <sys/stat.h>
 
-int doReadFile(const char *filename, char **pptext)
+int doReadFile(const char *filename, char **ppData)
 {
     FILE *fin;
-    size_t size, read_len;
-    char *ptext;
+    size_t size, readLen;
+    char *pData;
     struct stat st;
 
-    *pptext = NULL;
+    *ppData = NULL;
 
     if (stat(filename, &st) != 0)
         return -1;
@@ -21,39 +21,39 @@ int doReadFile(const char *filename, char **pptext)
     if (!fin)
         return -2;
 
-    ptext = malloc(size + 1); // including NUL
-    if (!ptext)
+    pData = malloc(size + 1); // including NUL
+    if (!pData)
     {
         fclose(fin);
         return -3;
     }
 
-    read_len = fread(ptext, 1, size, fin);
-    ptext[size] = 0; // set NUL
+    readLen = fread(pData, 1, size, fin);
+    pData[size] = 0; // set NUL
 
     fclose(fin);
 
-    if (read_len != size)
+    if (readLen != size)
     {
-        free(ptext);
+        free(pData);
         return -4;
     }
 
-    *pptext = ptext;
+    *ppData = pData;
     return 0; // success
 }
 
 int printFile(const char *filename)
 {
-    char *ptext;
+    char *pData;
     int ret;
 
-    ret = doReadFile(filename, &ptext);
+    ret = doReadFile(filename, &pData);
     switch (ret)
     {
     case 0: // success
-        printf("%s\n", ptext);
-        free(ptext);
+        printf("%s\n", pData);
+        free(pData);
         break;
     case -1:
     case -2:
