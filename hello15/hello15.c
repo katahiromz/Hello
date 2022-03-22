@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <sys/stat.h>
 
-int getTextFromFile(const char *filename, char **pptext)
+int doReadFile(const char *filename, char **pptext)
 {
     FILE *fin;
     size_t size, read_len;
@@ -47,7 +47,7 @@ int printFile(const char *filename)
     char *ptext;
     int ret;
 
-    ret = getTextFromFile(filename, &ptext);
+    ret = doReadFile(filename, &ptext);
     switch (ret)
     {
     case 0: // success
