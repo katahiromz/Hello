@@ -42,7 +42,7 @@ int getTextFromFile(const char *filename, char **pptext)
     return 0; // success
 }
 
-int do_it(const char *filename)
+int printTextFile(const char *filename)
 {
     char *ptext;
     int ret;
@@ -77,5 +77,5 @@ int main(int argc, char **argv)
         return 0;
     }
 
-    return do_it(argv[1]);
+    return printTextFile(argv[1]);
 }
