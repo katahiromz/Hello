@@ -1,6 +1,7 @@
 katahiromz/Win32Templatesをダウンロードして下さい。
+https://github.com/katahiromz/Win32Templates
 
-TextFileAppよりもリッチなRichTextFileAppというのを作りました。
+TextFileAppよりもリッチなRichTextFileAppというのを作りました。RichTextFileAppフォルダをご覧下さい。
 
 業務アプリにはいろんな要望があって、ツールバーを複数にしたいとかツールバーのボタンを増やしたいとかあります。業務アプリを担当するのであればそうした要望に時間内に応えなければいけません。
 
