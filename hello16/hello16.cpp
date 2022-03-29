@@ -10,6 +10,7 @@ int main(void)
     __except(GetExceptionCode() == EXCEPTION_ACCESS_VIOLATION ? EXCEPTION_EXECUTE_HANDLER : EXCEPTION_CONTINUE_SEARCH) \
     { puts("catched"); }
 
+    DebugBreak();
     SEH_CATCH(ImmInstallIMEA(0, 0));
     SEH_CATCH(ImmInstallIMEW(0, 0));
     SEH_CATCH(ImmGetDefaultIMEWnd(0));
