@@ -13,3 +13,5 @@ cd hello12 && call build && cd ..
 cd hello13 && call build && cd ..
 cd hello14 && call build && cd ..
 cd hello15 && call build && cd ..
+rem cd hello16 && call build && cd ..
+cd hello17 && call build && cd ..
