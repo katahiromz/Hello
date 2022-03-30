@@ -20,7 +20,7 @@ int main(void)
             if (str.empty())
                 break;
 
-            sprintf(buf, "imm-func-%02d.asm", iFile);
+            sprintf(buf, "imm-func-%02d.asm.txt", iFile);
             if (FILE *fout = fopen(buf, "w"))
             {
                 fprintf(fout, "%s", str.c_str());
