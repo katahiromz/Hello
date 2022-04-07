@@ -37,7 +37,7 @@ x86はリトルエンディアンだからDWORDの最初のバイトは最下位
 
 def IMM32!ImmDestroyContext(ARGV[1])
 {
-    if (gpsi == NULL || !(gpsi-&gt;dwSRVIFlags &amp; 4))
+    if (gpsi == NULL || !(gpsi->dwSRVIFlags & 4))
         return 0;
 
     esi = win32k!NtUserQueryInputContext(ARGV[1], 1);

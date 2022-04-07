@@ -29,7 +29,7 @@ FONT 9, "MS UI Gothic"
     EDITTEXT edt1, 68, 16, 60, 14
     LTEXT "体重(kg):", -1, 15, 43, 41, 11
     EDITTEXT edt2, 69, 43, 60, 14
-    DEFPUSHBUTTON "計算(&amp;C)", IDOK, 39, 66, 60, 14
+    DEFPUSHBUTTON "計算(&C)", IDOK, 39, 66, 60, 14
     LTEXT "BMI は？？？です。", stc1, 46, 89, 75, 15
 }
 

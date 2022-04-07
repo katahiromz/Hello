@@ -27,7 +27,7 @@ C++だと「for (HWND hwndTB : g_hToolbars) ...」などと書けますがこれ
 
 #define ARRAY_FOREACH(TYPE_var, array, block) do { \
     size_t ARRAY_FOREACH_##__LINE__ = 0; \
-    for (; ARRAY_FOREACH_##__LINE__ &lt; _countof(array); ++ARRAY_FOREACH_##__LINE__) { \
+    for (; ARRAY_FOREACH_##__LINE__ < _countof(array); ++ARRAY_FOREACH_##__LINE__) { \
         TYPE_var = array[ARRAY_FOREACH_##__LINE__]; \
         block \
     } \

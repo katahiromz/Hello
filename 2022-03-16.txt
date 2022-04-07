@@ -28,7 +28,7 @@ hello8は、文字列処理をするダイアログの例です。
 リファレンスのGetDlgItemText/SetDlgItemTextを参照。
 
 StringCchPrintfA/Wは、リファレンスに記載されていませんが、C言語のsprintfやWin32のwsprintfA/Wに似た関数で、
-バッファの長さを考慮した&lt;strsafe.h&gt;という比較的安全に文字列を操作するライブラリを使っています。
+バッファの長さを考慮した<strsafe.h>という比較的安全に文字列を操作するライブラリを使っています。
 
 hello9は、ボタンを押さなくても掛け算をするダイアログです。リファレンスでEN_CHANGEを参照。
 
@@ -73,7 +73,7 @@ POINT構造体とRECT構造体は画面上の位置を表しています。
 GetCursorPosでマウスカーソルの位置を取得できます。
 GetClientRectでクライアント領域のRECTを取得できます。
 GetWindowRectでスクリーン座標のRECTを取得できます。（RECTは長方形rectangleの略です）
-atan2関数は&lt;math.h&gt;に含まれていて、線分の傾きを取得できます。
+atan2関数は<math.h>に含まれていて、線分の傾きを取得できます。
 それを三角関数に渡して、目玉の位置を決定しています。
 
 テキストは「第三コロニー」の「RisohEditorまとめ」:
