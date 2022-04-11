@@ -53,6 +53,8 @@ debug-patch.patchとkdbを使ってimm32_apitestのhimcテストケースの
 
 この課題が出来たら戦力として認めよう。
 
+今日はここまで。
+
 わかりました
 
 頑張ります
