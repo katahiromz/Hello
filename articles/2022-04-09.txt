@@ -23,11 +23,11 @@ IMM32!ImmUnlockImeDpiについては、
 
 この部分が、ReactOSでは
     /* Remove from list */
-    for (ppEntry = &amp;gpImeDpiList; *ppEntry; ppEntry = &amp;((*ppEntry)-&gt;pNext))
+    for (ppEntry = &gpImeDpiList; *ppEntry; ppEntry = &((*ppEntry)->pNext))
     {
         if (*ppEntry == pImeDpi) /* found */
         {
-            *ppEntry = pImeDpi-&gt;pNext;
+            *ppEntry = pImeDpi->pNext;
             break;
         }
     }

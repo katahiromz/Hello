@@ -19,22 +19,22 @@ TeraPadは使ってないです
 
 「cont」でデバッグ状態から通常実行に移る。
 
-ターゲットのプログラムを起動。DebugBreak();で停止してkdb:&gt;プロンプトが表示される。
+ターゲットのプログラムを起動。DebugBreak();で停止してkdb:>プロンプトが表示される。
 
 ERRのデバッグ出力を確認。ここまで。
 
 で、ImmLockIMC失敗の原因はわかったかな？
 
 どうやらwin32ss\user\ntuser\ime.cのNtUserQueryInputContextで、NULLが返っているみたいです
-ImmLockIMC-&gt;Imm32InternalLockIMC-&gt;NtUserQueryInputContext
+ImmLockIMC->Imm32InternalLockIMC->NtUserQueryInputContext
 
 その通り。
 
 そしてNULLが返ってきている理由として、switch文の中で戻り値を取得している中、戻り値を設定する箇所のif文が実行されていないことでした。
 
-if(ptiIMC-&gt;spwndDefaultIme)の部分です
+if(ptiIMC->spwndDefaultIme)の部分です
 
-そしてptiIMCは引数pIMCを使ったpIMC-&gt;head.ptiで...という状態です
+そしてptiIMCは引数pIMCを使ったpIMC->head.ptiで...という状態です
 
 ptiはスレッド情報。pwndはウィンドウの内部データ（PWND型）。spwndDefaultImeはデフォルトのIMEウィンドウ。つまり、スレッドにIMEウィンドウが作成・設定されていないのが原因だ。
 
