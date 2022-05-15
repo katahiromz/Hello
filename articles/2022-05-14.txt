@@ -98,3 +98,5 @@ https://jira.reactos.org/secure/attachment/62077/num2vk.zip
 今日はここまで。
 
 追伸。@__security_check_cookie@4は引数なし、戻り値なしの関数と見なしてもよい。
+
+追伸2。WinXPのKBDJPN.DLLとReactOSのkbdja.dllではインターフェイスが違うようだ。今回の課題はしなくてもいい。
